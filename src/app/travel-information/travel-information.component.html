@@ -1,0 +1,77 @@
+<div class="travel-information container-fluid">
+  <div class="jumbotron text-center">
+    <h1>
+      <img class="travel-information__logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
+      <span translate>Departure Information</span>
+    </h1>
+    <app-loader [isLoading]="isLoading"></app-loader>
+  </div>
+
+  <div class="travel-information__container">
+    <div class="card col-md-6 mt-3 mx-auto">
+      <div class="card-body">
+        <form (ngSubmit)="onFormPost()" [formGroup]="travelInformationForm" novalidate>
+          <div class="form-group">
+            <label class="d-block">
+              <input
+                type="text"
+                class="travel-information__start-station form-control"
+                formControlName="startStation"
+                autocomplete="startStation"
+                [placeholder]="'startStation' | translate"
+              />
+              <span hidden translate>startStation</span>
+              <small
+                [hidden]="
+                  travelInformationForm.controls.startStation.valid ||
+                  travelInformationForm.controls.startStation.untouched
+                "
+                class="text-danger"
+                translate
+              >
+                startStation is required
+              </small>
+            </label>
+            <label class="d-block">
+              <input
+                type="date"
+                class="travel-information__date form-control"
+                formControlName="date"
+                autocomplete="current-date"
+                [placeholder]="'date' | translate"
+                required
+              />
+              <span hidden translate>date</span>
+              <small
+                [hidden]="travelInformationForm.controls.date.valid || travelInformationForm.controls.date.untouched"
+                class="text-danger"
+                translate
+              >
+                date is required
+              </small>
+            </label>
+          </div>
+          <button
+            class="travel-information__submit-button btn btn-primary w-100"
+            type="submit"
+            [disabled]="travelInformationForm.invalid || isLoading"
+          >
+            <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+            <span translate>Request departure information</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <ul *ngIf="travelInformation" [hidden]="isLoading" class="travel-information__departure-list col-md-6 mt-3 mx-auto">
+      <li *ngFor="let departure of travelInformation" class="travel-information__departure-list-item">
+        <h4 class="travel-information__departure-list-item-header">{{ departure.direction }}</h4>
+        <ul class="travel-information__route-list">
+          <li *ngFor="let routeStation of departure.routeStations" class="travel-information__route-list-item">
+            {{ routeStation.mediumName }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -10,11 +10,25 @@ const HttpsProxyAgent = require('https-proxy-agent');
  */
 const proxyConfig = [
   {
-    context: '/api',
-    pathRewrite: { '^/api': '' },
+    context: '/api/jokes',
+    pathRewrite: {
+      '^/api/jokes': ''
+    },
     target: 'https://api.chucknorris.io',
     changeOrigin: true,
     secure: false
+  },
+  {
+    context: '/api/travel-information-api',
+    pathRewrite: {
+      '^/api/travel-information-api': ''
+    },
+    target: 'https://gateway.apiportal.ns.nl/public-reisinformatie/api/v2/departures',
+    changeOrigin: true,
+    secure: false,
+    headers: {
+      'Ocp-Apim-Subscription-Key': ''
+    }
   }
 ];
 
@@ -32,7 +46,9 @@ function setupForCorporateProxy(proxyConfig) {
   if (proxyServer) {
     console.log(`Using corporate proxy server: ${proxyServer}`);
     agent = new HttpsProxyAgent(proxyServer);
-    proxyConfig.forEach(entry => { entry.agent = agent; });
+    proxyConfig.forEach(entry => {
+      entry.agent = agent;
+    });
   }
 
   return proxyConfig;
