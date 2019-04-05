@@ -9,6 +9,7 @@ import { TravelInformationService } from './travel-information.service';
   styleUrls: ['./travel-information.component.scss']
 })
 export class TravelInformationComponent {
+  // TODO: Set travelInformation type.
   travelInformation: any;
   isLoading: boolean;
   travelInformationForm: FormGroup;

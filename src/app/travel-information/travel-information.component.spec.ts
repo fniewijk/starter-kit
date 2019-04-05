@@ -96,6 +96,8 @@ describe('TravelInformationComponent', () => {
     expect(submitButton.disabled).toEqual(true);
   });
 
+  // TODO Test that tests the click on the form.
+
   it('should do a call to the service when form filled out and set the state', () => {
     const stationInput = fixture.nativeElement.querySelector('.travel-information__start-station');
     stationInput.value = 'UT';
@@ -110,6 +112,8 @@ describe('TravelInformationComponent', () => {
     expect(component.travelInformation).toEqual(mockTravelInformation);
     expect(spy.calls.count()).toEqual(1);
   });
+
+  // TODO Test that has the observable throw an error.
 
   it('should display a list of departures with stations', () => {
     component.travelInformation = mockTravelInformation;
