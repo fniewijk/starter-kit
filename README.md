@@ -26,12 +26,14 @@ Bad things:
 
 1. Go to project folder and install dependencies:
 
-````bash
+```bash
 npm install
+```
 
 2. Launch development server, and open `localhost:4200` in your browser:
+
 ```bash
 NS_TOKEN=your_ns_api_token_here npm start
-````
+```
 
 3. Log in with any credentials, click on the Departure Information Link in the header.
