@@ -27,7 +27,7 @@ const proxyConfig = [
     changeOrigin: true,
     secure: false,
     headers: {
-      'Ocp-Apim-Subscription-Key': ''
+      'Ocp-Apim-Subscription-Key': process.env.ns_token || process.env.NS_TOKEN
     }
   }
 ];
